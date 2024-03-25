@@ -1,1 +1,3 @@
-print(1)
+from human import Human
+
+human = Human()
