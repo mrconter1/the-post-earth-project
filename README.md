@@ -12,7 +12,7 @@ From a high-level perspective, it seems logical to model each station with the f
 
 Initially, this project will prioritize materials based on necessity and will operate under the assumption that the infrastructure for gathering and processing these materials already exists.
 
-# Standard Habitat
+## Standard Habitat
 
 We will start with constructing a standard habitat. Each person would have approximately 100 square meters on average where 20 square meters out of those would be private.
 
