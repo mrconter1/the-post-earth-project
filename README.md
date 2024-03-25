@@ -19,3 +19,7 @@ We will start with constructing a standard habitat. Each person would have appro
 Let us assume a rotating ring with a radius of around 250 meters. The ring would consist of three levels, each of which would be three meters, and it would be 15 meters wide.
 
 That would amount to around 70 000 square meters of habitat area, meaning that it would be able to host around 700 people.
+
+## Food Producing Station
+
+If we assume that each person would need to have approximately 100 cubic meter of growing space to continously produce food there would need to be 70 000 cubic meter needed. For simplicity, we will make this volume into a cube and assume each side of it to be approximately 50 meters.
