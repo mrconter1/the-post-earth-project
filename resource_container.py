@@ -1,31 +1,22 @@
 class ResourceContainer:
-    def __init__(self, requires=None, provides=None):
-        self.requires = requires or {}
-        self.provides = provides or {}
-        self.containers = []
+    def __init__(self):
+        self.requires = {}
+        self.provides = {}
 
-    def add_container(self, container):
-        if isinstance(container, ResourceContainer):
-            self.containers.append(container)
+    def add_requirement(self, resource, quantity):
+        if resource in self.requires:
+            self.requires[resource] += quantity
         else:
-            raise ValueError("Container must be an instance of ResourceContainer.")
+            self.requires[resource] = quantity
 
-    def require_resource(self, resource, amount):
-        self.requires[resource] = self.requires.get(resource, 0) + amount
+    def add_provision(self, resource, quantity):
+        if resource in self.provides:
+            self.provides[resource] += quantity
+        else:
+            self.provides[resource] = quantity
 
-    def provide_resource(self, resource, amount):
-        self.provides[resource] = self.provides.get(resource, 0) + amount
+    def get_requirements(self):
+        return self.requires
 
-    def get_total_requirements(self):
-        total_requirements = self.requires.copy()
-        for container in self.containers:
-            for resource, amount in container.get_total_requirements().items():
-                total_requirements[resource] = total_requirements.get(resource, 0) + amount
-        return total_requirements
-
-    def get_total_provisions(self):
-        total_provisions = self.provides.copy()
-        for container in self.containers:
-            for resource, amount in container.get_total_provisions().items():
-                total_provisions[resource] = total_provisions.get(resource, 0) + amount
-        return total_provisions
+    def get_provisions(self):
+        return self.provides

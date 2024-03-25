@@ -3,17 +3,8 @@ from human import Human
 
 class Habitat(ResourceContainer):
     def __init__(self):
-        super().__init__(
-            provides ={
-                'volume': 500
-            }
-        )
+        super().__init__()
 
-# Create 'Human' instances
-human1 = Human()
-human2 = Human()
+        self.add_requirement(Human())
 
-# Create a 'Habitat' instance and add humans
-space_habitat = Habitat()
-space_habitat.add_container(human1)
-space_habitat.add_container(human2)
+        self.add_provision(Space(100))
