@@ -5,7 +5,7 @@ class Habitat(ResourceContainer):
     def __init__(self):
         super().__init__(
             provides ={
-                'living_space': 500
+                'living_area': 500
             }
         )
 

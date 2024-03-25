@@ -7,7 +7,7 @@ class Human(ResourceContainer):
                 'oxygen': 550,
                 'calories': 2500,
                 'water': 3.7,
-                'living_space': 100,
+                'living_area': 100,
             },
             provides ={
                 'co2': 1,
