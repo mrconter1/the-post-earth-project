@@ -20,42 +20,42 @@ Let us assume a rotating ring with a radius of around 250 meters. The ring would
 
 That would amount to around 70 000 square meters of habitat area, meaning that it would be able to host around 700 people.
 
-Input:
+### Input
 
-Oxygen
-Calories
-Water
+- Oxygen
+- Calories
+- Water
 
-Output:
+### Output
 
-CO2
-Organic Waste
-Wastewater
+- CO2
+- Organic Waste
+- Wastewater
 
 ## Food Producing Station
 
 If we assume that each person would need to have approximately 100 cubic meter of growing space to continuously produce food there would need to be 70 000 cubic meter needed. For simplicity, we will make this volume into a cube and assume each side of it to be approximately 50 meters.
 
-Input:
+### Input
 
-CO2
-Fertilizers
-Water
+- CO2
+- Fertilizers
+- Water
 
-Output:
+### Output
 
-Oxygen
-Calories
+- Oxygen
+- Calories
 
 ## Recycling Station
 
-Input:
+### Input
 
-Organic Waste
-Wastewater
+- Organic Waste
+- Wastewater
 
-Output:
+### Output
 
-CO2
-Fertilizers
-Water
+- CO2
+- Fertilizers
+- Water
