@@ -1,16 +1,26 @@
 from resource_container import ResourceContainer
 from ResourceUnits import *
 
+class FarmStation(ResourceContainer):
+    def __init__(self):
+        super().__init__()
+
+        # This habitat hosts 700 people
+        for i in range(700):
+            self.add_requirement(Plant())
+
+        self.add_provision(Space(100))
+
 class Plant(ResourceContainer):
     def __init__(self):
         super().__init__()
 
-        # Requirements (what a plant needs to grow and produce food)
-        self.add_requirement(CO2(0.85))      # Amount of CO2 absorbed by the plant per day, placeholder value
-        self.add_requirement(Nutrients(0.02)) # Nutrients needed per day in kilograms, placeholder value
-        self.add_requirement(Water(1))       # Water used by the plant per day in liters, placeholder value
-        self.add_requirement(Light(1000))    # Light needed per day in some units, placeholder value
+        # Let's assume these requirements based on a daily cycle for simplicity:
+        self.add_requirement(CO2(0.85))           # 0.85 kg of CO2 per day, placeholder value
+        self.add_requirement(Fertilizer(0.02))    # 0.02 kg of fertilizer per day, placeholder value
+        self.add_requirement(Water(1))            # 1 liter of water per day, placeholder value
+        self.add_requirement(Space(1))            # 1 cubic meter of space per plant
 
-        # Provisions (what a plant produces)
-        self.add_provision(Oxygen(0.7))      # Amount of O2 produced by the plant, placeholder value
-        self.add_provision(OrganicMatter(0.1)) # Edible or usable biomass produced, placeholder value
+        # And these provisions based on the same daily cycle:
+        self.add_provision(Oxygen(0.7))           # 0.7 kg of O2 per day, placeholder value
+        self.add_provision(Calories(500))         # 500 kilocalories per day, placeholder value
