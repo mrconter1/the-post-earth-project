@@ -5,3 +5,8 @@ __pycache__/resource_entity.cpython-310.pyc
 __pycache__/resources.cpython-310.pyc
 resource_units/__pycache__/carbon_dioxide.cpython-310.pyc
 resource_units/__pycache__/oxygen.cpython-310.pyc
+resource_units/__pycache__/calories.cpython-310.pyc
+resource_units/__pycache__/organic_waste.cpython-310.pyc
+resource_units/__pycache__/space.cpython-310.pyc
+resource_units/__pycache__/wastewater.cpython-310.pyc
+resource_units/__pycache__/water.cpython-310.pyc
