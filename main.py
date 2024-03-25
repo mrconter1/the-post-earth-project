@@ -1,3 +1,3 @@
-from human import Human
+from habitat_station import HabitatStation
 
-human = Human()
+habitat = HabitatStation()

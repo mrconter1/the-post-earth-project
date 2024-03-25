@@ -1,2 +1,7 @@
 __pycache__/human.cpython-310.pyc
 __pycache__/resource_container.cpython-310.pyc
+__pycache__/habitat_station.cpython-310.pyc
+__pycache__/resource_entity.cpython-310.pyc
+__pycache__/resources.cpython-310.pyc
+resource_units/__pycache__/carbon_dioxide.cpython-310.pyc
+resource_units/__pycache__/oxygen.cpython-310.pyc
