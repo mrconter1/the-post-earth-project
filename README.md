@@ -11,3 +11,11 @@ From a high-level perspective, it seems logical to model each station with the f
 - The average consumption of a set of products, also measured in tons
 
 Initially, this project will prioritize materials based on necessity and will operate under the assumption that the infrastructure for gathering and processing these materials already exists.
+
+# Standard Habitat
+
+We will start with constructing a standard habitat. Each person would have approximately 100 square meters on average where 20 square meters out of those would be private.
+
+Let us assume a rotating ring with a radius of around 250 meters. The ring would consist of three levels, each of which would be three meters, and it would be 15 meters wide.
+
+That would amount to around 70 000 square meters of habitat area, meaning that it would be able to host around 700 people.
