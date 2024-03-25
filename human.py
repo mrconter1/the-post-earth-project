@@ -4,6 +4,7 @@ from ResourceUnits import *
 class Human(ResourceContainer):
     def __init__(self):
         super().__init__()
+
         # Requirements (what a human needs to survive)
         self.add_requirement(Oxygen(550))      # 550 liters of oxygen per day
         self.add_requirement(Calories(2500))   # 2500 kcal per day
