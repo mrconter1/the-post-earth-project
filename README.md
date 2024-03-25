@@ -22,4 +22,4 @@ That would amount to around 70 000 square meters of habitat area, meaning that i
 
 ## Food Producing Station
 
-If we assume that each person would need to have approximately 100 cubic meter of growing space to continously produce food there would need to be 70 000 cubic meter needed. For simplicity, we will make this volume into a cube and assume each side of it to be approximately 50 meters.
+If we assume that each person would need to have approximately 100 cubic meter of growing space to continuously produce food there would need to be 70 000 cubic meter needed. For simplicity, we will make this volume into a cube and assume each side of it to be approximately 50 meters.
