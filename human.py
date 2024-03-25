@@ -1,8 +1,8 @@
 from resource_entity import ResourceEntity
 
 from resource_units.oxygen import Oxygen
-from resource_units.calories import Calories
 from resource_units.water import Water
+from resource_units.calories import Calories
 from resource_units.space import Space
 
 from resource_units.carbon_dioxide import CO2
@@ -15,8 +15,8 @@ class Human(ResourceEntity):
 
         # Requirements (what a human needs to survive)
         self.add_requirement(Oxygen(550))      # 550 liters of oxygen per day
-        self.add_requirement(Calories(2500))   # 2500 kcal per day
         self.add_requirement(Water(3.7))       # 3.7 liters of water per day
+        self.add_requirement(Calories(2500))   # 2500 kcal per day
         self.add_requirement(Space(100))       # 100 cubic meters of living space
 
         # Provisions (what a human produces as waste)
