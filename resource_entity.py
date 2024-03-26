@@ -5,7 +5,7 @@ class ResourceEntity:
         self.entities = []
         self.requires = {}
         self.provides = {}
-        self.available_resources = {} # Stockpile of ResourceEntity instances
+        self.available_resources = {} 
 
     def add_entity(self, entity):
         self.entities.append(entity)
