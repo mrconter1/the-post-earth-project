@@ -14,6 +14,33 @@ class ResourceEntity:
         self.capacities = {}  
         self.recycling_efficiency = {}
 
+        self.outgoing_transfers = []
+
+    def create_resource_route(self, resource_type, destination):
+        """
+        Creates a resource route from this entity to another entity.
+        
+        :param resource_type: Type of resource to send.
+        :param destination: Destination entity object.
+        """
+        self.outgoing_transfers.append({'resource_type': resource_type, 'destination': destination})
+
+    def execute_transfers(self):
+        for transfer in self.outgoing_transfers:
+            resource_type = transfer['resource_type']
+            destination = transfer['destination']
+            # Determine quantity to transfer. This could be a fixed value or based on available resources.
+            quantity = self.determine_transfer_quantity(resource_type)
+
+            if self.available_resources.get(resource_type, 0) >= quantity:
+                self.consume_from_stockpile(resource_type, quantity)
+                destination.add_to_stockpile(resource_type, quantity)
+
+    def determine_transfer_quantity(self, resource_type):
+        # Placeholder for logic to determine transfer quantity.
+        # This could be a fixed value or vary based on the resource type, production rates, etc.
+        return 10  # Example fixed quantity
+
     def add_entity(self, entity):
         self.entities.append(entity)
 
