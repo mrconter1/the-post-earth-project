@@ -11,3 +11,7 @@ resource_units/__pycache__/space.cpython-310.pyc
 resource_units/__pycache__/wastewater.cpython-310.pyc
 resource_units/__pycache__/water.cpython-310.pyc
 __pycache__/world_engine.cpython-310.pyc
+entities/__pycache__/human.cpython-310.pyc
+models/__pycache__/resource_entity.cpython-310.pyc
+models/__pycache__/world_engine.cpython-310.pyc
+stations/__pycache__/habitat_station.cpython-310.pyc

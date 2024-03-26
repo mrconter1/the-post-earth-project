@@ -1,5 +1,5 @@
-from habitat_station import HabitatStation
-from world_engine import WorldEngine
+from stations.habitat_station import HabitatStation
+from models.world_engine import WorldEngine
 
 def generate_habitat_station_instance():
 
