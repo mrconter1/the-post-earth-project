@@ -4,10 +4,12 @@ class AeroponicsPlant(ResourceEntity):
     def __init__(self):
         super().__init__('AeroponicsPlant')
 
-        # Requirements (what a plant needs to grow)
+        # Consumption (what a plant needs to grow)
         self.consumes['water'] = 0.75           # Average 0.75 liters of water per day per plant
         self.consumes['nutrients'] = 0.0001875  # Average of 187.5 mg per plant per day
         self.consumes['co2'] = 34               # Average of 34 liters of CO2 needed per day
+
+        # Requirements (what a plant needs to survive)
         self.requires['volume'] = 0.1           # Average 0.1 cubic meters of space per plant
 
         # Provisions (what a plant produces)
