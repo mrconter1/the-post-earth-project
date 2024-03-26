@@ -73,7 +73,8 @@ class ResourceEntity:
 
         for label, value in sorted(self.available_resources.items()):
             # Right-align the labels and format the value with proper units
-            print(f"  {label.rjust(longest_label_length)}: {value} units")
+            value_as_int = int(value)
+            print(f"  {label.rjust(longest_label_length)}: {value_as_int} units")
 
     def update_resources(self):
         """

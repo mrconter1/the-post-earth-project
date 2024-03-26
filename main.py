@@ -18,7 +18,7 @@ world_engine = WorldEngine()
 habitat = generate_habitat_station_instance()
 world_engine.add_entity(habitat)
 
-num_of_days = 10
+num_of_days = 35
 for day in range(num_of_days):
     print(f"Day {day}:")
     habitat.list_stockpile()
