@@ -18,6 +18,12 @@ world_engine = WorldEngine()
 habitat = generate_habitat_station_instance()
 world_engine.add_entity(habitat)
 
+#farm_station = FarmStation()
+#world_engine.add_entity(farm_station)
+
+#world_engine.create_resource_route('oxygen', farm_station, habitat)
+#world_engine.create_resource_route('calories', farm_station, habitat)
+
 num_of_days = 35
 for day in range(num_of_days):
     print(f"Day {day}:")
