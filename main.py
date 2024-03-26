@@ -35,3 +35,4 @@ for day in range(num_of_days):
     habitat.list_stockpile()
     world_engine.tick()
     print("-" * 20)  # Separator for readability
+    input()

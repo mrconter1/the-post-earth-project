@@ -17,29 +17,26 @@ class ResourceEntity:
         self.outgoing_transfers = []
 
     def create_resource_route(self, resource_type, destination):
-        """
-        Creates a resource route from this entity to another entity.
-        
-        :param resource_type: Type of resource to send.
-        :param destination: Destination entity object.
-        """
         self.outgoing_transfers.append({'resource_type': resource_type, 'destination': destination})
 
     def execute_transfers(self):
+        # Get the total provisions from this entity and its sub-entities.
+        total_provisions = self.get_provisions()
+
         for transfer in self.outgoing_transfers:
             resource_type = transfer['resource_type']
             destination = transfer['destination']
-            # Determine quantity to transfer. This could be a fixed value or based on available resources.
-            quantity = self.determine_transfer_quantity(resource_type)
 
-            if self.available_resources.get(resource_type, 0) >= quantity:
+            # Determine the total quantity to transfer based on the provisions.
+            quantity = total_provisions.get(resource_type, 0)
+
+            # Perform the transfer if there's enough resource in the stockpile and the quantity is more than 0.
+            if self.available_resources.get(resource_type, 0) >= quantity and quantity > 0:
                 self.consume_from_stockpile(resource_type, quantity)
                 destination.add_to_stockpile(resource_type, quantity)
-
-    def determine_transfer_quantity(self, resource_type):
-        # Placeholder for logic to determine transfer quantity.
-        # This could be a fixed value or vary based on the resource type, production rates, etc.
-        return 10  # Example fixed quantity
+            else:
+                # Optionally, handle cases where the stockpile doesn't have enough resources.
+                print(f"Cannot transfer {quantity} units of {resource_type} to {destination.label} due to insufficient stock.")
 
     def add_entity(self, entity):
         self.entities.append(entity)
@@ -132,6 +129,9 @@ class ResourceEntity:
             if label in self.recycling_efficiency:
                 reclaimed_amount = consumed_value * self.recycling_efficiency[label]
                 self.add_to_stockpile(label, reclaimed_amount)
+
+        # Execute transfers after the stockpile has been updated.
+        self.execute_transfers()
 
     def list_stockpile(self):
         print(f"Stockpile for {self.label}:")
