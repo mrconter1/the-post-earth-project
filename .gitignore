@@ -10,3 +10,4 @@ resource_units/__pycache__/organic_waste.cpython-310.pyc
 resource_units/__pycache__/space.cpython-310.pyc
 resource_units/__pycache__/wastewater.cpython-310.pyc
 resource_units/__pycache__/water.cpython-310.pyc
+__pycache__/world_engine.cpython-310.pyc
