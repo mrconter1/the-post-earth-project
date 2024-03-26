@@ -13,7 +13,7 @@ class HabitatStation(ResourceEntity):
         for i in range(700):
             self.add_requirement(Human())
 
-        self.add_requirement(Space(self.calculate_station_volume()))
+        self.add_provision(Space(self.calculate_station_volume()))
 
     def calculate_station_volume(self):
         # Dimensions in meters
