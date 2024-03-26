@@ -20,7 +20,10 @@ class ResourceEntity:
         self.requires[label] = value
 
     def add_capacity(self, label, value):
-        self.capacities[label] = value
+        if label in self.capacities:
+            self.capacities[label] += value  # Update existing capacity value
+        else:
+            self.capacities[label] = value  # Add new capacity
 
     def add_provision(self, label, value):
         self.provides[label] = value
