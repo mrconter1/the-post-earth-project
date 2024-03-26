@@ -74,3 +74,17 @@ class ResourceEntity:
         for label, value in sorted(self.available_resources.items()):
             # Right-align the labels and format the value with proper units
             print(f"  {label.rjust(longest_label_length)}: {value} units")
+
+    def update_resources(self):
+        """
+        Adjusts the entity's stockpile by adding provisions and then consuming resources
+        for one operational cycle. Allows resource values to temporarily go negative,
+        anticipating future adjustments within the cycle.
+        """
+        # Add provisions to the stockpile
+        for label, value in self.get_provisions().items():
+            self.add_to_stockpile(label, value)
+
+        # Subtract required resources, permitting negative values
+        for label, value in self.get_requirements().items():
+            self.available_resources[label] = self.available_resources.get(label, 0) - value
