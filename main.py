@@ -5,21 +5,9 @@ from stations.waste_facility_station import WasteFacilityStation
 
 from models.world_engine import WorldEngine
 
-def generate_habitat_station_instance():
-
-    # Create the habitat station instance
-    habitat = HabitatStation()
-
-    # Adding monthly requirements for 700 people
-    habitat.add_to_stockpile('oxygen', 550 * 30 * 700)      # 550 liters/day * 30 days * 700 people
-    habitat.add_to_stockpile('water', 3.7 * 30 * 700)       # 3.7 liters/day * 30 days * 700 people
-    habitat.add_to_stockpile('calories', 2500 * 30 * 700)   # 2500 kcal/day * 30 days * 700 people
-
-    return habitat
-
 world_engine = WorldEngine()
 
-habitat = generate_habitat_station_instance()
+habitat = HabitatStation()
 farming_station = FarmingStation()
 water_mining_station = WaterMiningStation()
 waste_facility_station = WasteFacilityStation()

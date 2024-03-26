@@ -9,4 +9,7 @@ class FarmingStation(ResourceEntity):
         for _ in range(number_of_plants):
             self.add_entity(AeroponicsPlant())
 
+        # Set recycle efficiences for each resource
+        self.set_recycling_efficiency('water', 0.92)  # 92% recycling efficiency
+
         self.add_capacity("volume", 500)
