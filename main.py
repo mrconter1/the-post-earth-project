@@ -20,15 +20,13 @@ def generate_habitat_station_instance():
 world_engine = WorldEngine()
 
 habitat = generate_habitat_station_instance()
-world_engine.add_entity(habitat)
-
 farming_station = FarmingStation()
-world_engine.add_entity(farming_station)
-
 water_mining_station = WaterMiningStation()
-world_engine.add_entity(water_mining_station)
-
 waste_facility_station = WasteFacilityStation()
+
+world_engine.add_entity(habitat)
+world_engine.add_entity(farming_station)
+world_engine.add_entity(water_mining_station)
 world_engine.add_entity(waste_facility_station)
 
 #world_engine.create_resource_route('oxygen', farm_station, habitat)
