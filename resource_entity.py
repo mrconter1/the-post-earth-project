@@ -11,7 +11,7 @@ class ResourceEntity:
     def add_provision(self, resource_instance):
         self.provides.append(resource_instance)
 
-    def get_requirements(self):
+    def gather_requirements(self):
         # Base case: if the instance represents a fundamental entity with a set quantity
         if self.quantity > 0 or not self.requires:
             return [self]
@@ -21,3 +21,14 @@ class ResourceEntity:
             for required_entity in self.requires:
                 all_requirements.extend(required_entity.get_requirements())
             return all_requirements
+
+    def get_requirements(self):
+        all_requirements = self.gather_requirements()
+        consolidated = {}
+        # Consolidate requirements by summing quantities for each label
+        for requirement in all_requirements:
+            if requirement.label in consolidated:
+                consolidated[requirement.label].quantity += requirement.quantity
+            else:
+                consolidated[requirement.label] = ResourceEntity(requirement.label, requirement.quantity)
+        return list(consolidated.values())
