@@ -38,6 +38,14 @@ class ResourceEntity:
                 # Optionally, handle cases where the stockpile doesn't have enough resources.
                 print(f"Cannot transfer {quantity} units of {resource_type} to {destination.label} due to insufficient stock.")
 
+    def stock_resources_for_time_period(self, time_period_units):
+        # Get the total consumption per tick
+        total_consumption = self.get_consumables()
+
+        # Iterate through each consumable and stock resources for the specified time period
+        for resource, consumption_per_tick in total_consumption.items():
+            self.add_to_stockpile(resource, consumption_per_tick * time_period_units)
+
     def add_entity(self, entity):
         self.entities.append(entity)
 

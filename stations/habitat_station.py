@@ -10,10 +10,9 @@ class HabitatStation(ResourceEntity):
         for i in range(700):
             self.add_entity(Human())
 
-        # Add initial stock of resources
-        self.add_to_stockpile('oxygen', 550 * 7 * 700)      # 550 liters/day * 7 days * 700 people
-        self.add_to_stockpile('water', 3.7 * 7 * 700)       # 3.7 liters/day * 7 days * 700 people
-        self.add_to_stockpile('calories', 2500 * 7 * 700)   # 2500 kcal/day * 7 days * 700 people
+        # Start with an initial stock of seven days
+        days_to_stock = 7
+        self.stock_resources_for_time_period(days_to_stock)
 
         # Set recycle efficiences for each resource
         self.set_recycling_efficiency('water', 0.92)  # 92% recycling efficiency
