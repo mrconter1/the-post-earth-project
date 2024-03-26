@@ -5,3 +5,4 @@ class WaterMiningStation(ResourceEntity):
         super().__init__('WaterMiningStation')
 
         self.add_to_stockpile("water", 100000000)
+        self.add_provision("water", 1000)

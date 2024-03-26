@@ -16,3 +16,4 @@ class AeroponicsPlant(ResourceEntity):
         self.provides['oxygen'] = 0.04          # Approx. 0.04 kg of oxygen per day per square meter of plant area
         self.provides['calories'] = 14          # Approx. 14 calories/day from various plant types.
         self.provides['water'] = 0.5            # Approx. 0.5 liters of water released through transpiration per day
+        self.provides['organic_waste'] = 0.0125 # Approx. 12.5 g of organic waste in the form of non-edible plant parts
