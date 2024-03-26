@@ -23,3 +23,5 @@ world_engine = WorldEngine()
 
 habitat = generate_habitat_station_instance()
 world_engine.add_entity(habitat)
+
+world_engine.tick()

@@ -45,3 +45,17 @@ class ResourceEntity:
                     else:
                         total_requirements[label] = value
             return total_requirements
+
+    def get_provisions(self):
+        if self.value > 0: # If this is a fundamental resource
+            return {self.label: self.value}
+        else: # If this is a composed resource, get provisions from all entities
+            total_provisions = self.provides.copy() # Start with own provisions
+            for entity in self.entities:
+                entity_provisions = entity.get_provisions()
+                for label, value in entity_provisions.items():
+                    if label in total_provisions:
+                        total_provisions[label] += value
+                    else:
+                        total_provisions[label] = value
+            return total_provisions

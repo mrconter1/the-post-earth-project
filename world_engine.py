@@ -5,40 +5,39 @@ class WorldEngine:
     def add_entity(self, entity):
         self.entities.append(entity)
 
-    def tick_day(self):
+    def tick(self):
         total_requirements = {}
         total_provisions = {}
 
         # Calculate total daily requirements and provisions
         for entity in self.entities:
-            for requirement in entity.get_requirements():
-                if requirement.label not in total_requirements:
-                    total_requirements[requirement.label] = requirement.quantity
+            entity_requirements = entity.get_requirements()
+            for requirement_label, required_quantity in entity_requirements.items():
+                if requirement_label not in total_requirements:
+                    total_requirements[requirement_label] = required_quantity
                 else:
-                    total_requirements[requirement.label] += requirement.quantity
+                    total_requirements[requirement_label] += required_quantity
 
-            for provision in entity.provides:
-                if provision.label not in total_provisions:
-                    total_provisions[provision.label] = provision.quantity
+            entity_provisions = entity.get_provisions()
+            for provision_label, provision_quantity in entity_provisions.items():
+                if provision_label not in total_provisions:
+                    total_provisions[provision_label] = provision_quantity
                 else:
-                    total_provisions[provision.label] += provision.quantity
+                    total_provisions[provision_label] += provision_quantity
 
-        # Process requirements: reduce available resources
-        for requirement_label, required_quantity in total_requirements.items():
-            # Assume an 'available_resources' dictionary tracking resources in the environment
-            if requirement_label in self.available_resources:
-                self.available_resources[requirement_label] -= required_quantity
-                # You might want to handle cases where there isn't enough resource available
-                if self.available_resources[requirement_label] < 0:
-                    print(f"Warning: Shortage of {requirement_label}")
+        # Check if each requirement is met by provisions
+        for entity in self.entities:
+            entity_requirements = entity.get_requirements()
+            entity_provisions = entity.get_provisions()
+            for requirement_label, required_quantity in entity_requirements.items():
+                if requirement_label in entity_provisions:
+                    entity_provisions[requirement_label] -= required_quantity
+                    if entity_provisions[requirement_label] < 0:
+                        print(f"Warning: Shortage of {requirement_label} in entity {entity.label}")
+                        entity_provisions[requirement_label] = 0
+                else:
+                    print(f"Warning: Shortage of {requirement_label} in entity {entity.label}")
 
-        # Process provisions: increase available resources
-        for provision_label, provision_quantity in total_provisions.items():
-            if provision_label in self.available_resources:
-                self.available_resources[provision_label] += provision_quantity
-            else:
-                self.available_resources[provision_label] = provision_quantity
-
-    # Initial setup for available resources in the environment
-    def setup_initial_resources(self, resources_dict):
-        self.available_resources = resources_dict  # A dictionary of resource labels to quantities
+            # Update available resources in the entity
+            for provision_label, provision_quantity in entity_provisions.items():
+                entity.add_to_stockpile(provision_label, provision_quantity)
