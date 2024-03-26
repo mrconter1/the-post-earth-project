@@ -3,6 +3,7 @@ class ResourceEntity:
         self.label = label
         self.value = value # Used when the entity itself is treated as a resource
         self.entities = []
+        self.consumes = {}
         self.requires = {}
         self.provides = {}
         self.available_resources = {} 
@@ -60,6 +61,31 @@ class ResourceEntity:
                         total_provisions[label] = value
             return total_provisions
 
+    def get_consumables(self):
+        """
+        Aggregates consumables from this entity and all child entities.
+        """
+        total_consumables = self.consumes.copy()
+        for entity in self.entities:
+            entity_consumables = entity.get_consumables()
+            for label, value in entity_consumables.items():
+                total_consumables[label] = total_consumables.get(label, 0) + value
+        return total_consumables
+
+    def update_resources(self):
+        """
+        Adjusts the entity's stockpile by adding provisions and then consuming resources
+        for one operational cycle. Allows resource values to temporarily go negative,
+        anticipating future adjustments within the cycle.
+        """
+        # Add provisions to the stockpile
+        for label, value in self.get_provisions().items():
+            self.add_to_stockpile(label, value)
+
+        # Subtract required resources, permitting negative values
+        for label, value in self.get_consumables().items():
+            self.available_resources[label] = self.available_resources.get(label, 0) - value
+
     def list_stockpile(self):
         # Improved method to list all resources in the stockpile with better formatting
         print(f"Stockpile for {self.label}:")
@@ -75,17 +101,3 @@ class ResourceEntity:
             # Right-align the labels and format the value with proper units
             value_as_int = int(value)
             print(f"  {label.rjust(longest_label_length)}: {value_as_int} units")
-
-    def update_resources(self):
-        """
-        Adjusts the entity's stockpile by adding provisions and then consuming resources
-        for one operational cycle. Allows resource values to temporarily go negative,
-        anticipating future adjustments within the cycle.
-        """
-        # Add provisions to the stockpile
-        for label, value in self.get_provisions().items():
-            self.add_to_stockpile(label, value)
-
-        # Subtract required resources, permitting negative values
-        for label, value in self.get_requirements().items():
-            self.available_resources[label] = self.available_resources.get(label, 0) - value

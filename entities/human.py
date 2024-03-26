@@ -5,9 +5,9 @@ class Human(ResourceEntity):
         super().__init__('Human')
 
         # Requirements (what a human needs to survive)
-        self.requires['oxygen'] = 550           # 550 liters of oxygen
-        self.requires['water'] = 3.7            # 3.7 liters of water
-        self.requires['calories'] = 2500        # 2500 kcal
+        self.consumes['oxygen'] = 550           # 550 liters of oxygen
+        self.consumes['water'] = 3.7            # 3.7 liters of water
+        self.consumes['calories'] = 2500        # 2500 kcal
         self.requires['volume'] = 100           # 100 cubic meters of living space
 
         # Provisions (what a human produces as waste)
