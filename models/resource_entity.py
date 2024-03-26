@@ -12,6 +12,7 @@ class ResourceEntity:
 
         self.requires = {}
         self.capacities = {}  
+        self.recycling_efficiency = {}
 
     def add_entity(self, entity):
         self.entities.append(entity)
@@ -41,6 +42,12 @@ class ResourceEntity:
             print(f"The resource {label} is not available in the stockpile.")
         else:
             print(f"Not enough of the resource {label} available to consume.")
+
+    def set_recycling_efficiency(self, resource_label, efficiency):
+        """
+        Sets the recycling efficiency for a given resource.
+        """
+        self.recycling_efficiency[resource_label] = efficiency
 
     def get_requirements(self):
         total_requirements = self.requires.copy()
@@ -77,13 +84,27 @@ class ResourceEntity:
         return True
 
     def update_resources(self):
+        """
+        Updates the stockpile by adding provisions and subtracting consumables,
+        then adds back a portion of the consumed resources based on recycling efficiency.
+        """
         if not self.check_capacities():
             print("Cannot update resources due to insufficient capacities.")
             return
+
+        # First, add provisions to the stockpile.
         for label, value in self.get_provisions().items():
             self.add_to_stockpile(label, value)
+
+        # Subtract consumed resources from the stockpile.
         for label, value in self.get_consumables().items():
-            self.available_resources[label] = self.available_resources.get(label, 0) - value
+            self.consume_from_stockpile(label, value)
+
+        # Reclaim resources based on recycling efficiency and add them back to the stockpile.
+        for label, consumed_value in self.get_consumables().items():
+            if label in self.recycling_efficiency:
+                reclaimed_amount = consumed_value * self.recycling_efficiency[label]
+                self.add_to_stockpile(label, reclaimed_amount)
 
     def list_stockpile(self):
         print(f"Stockpile for {self.label}:")
