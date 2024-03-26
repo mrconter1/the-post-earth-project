@@ -24,6 +24,8 @@ world_engine.add_entity(habitat)
 #world_engine.create_resource_route('oxygen', farm_station, habitat)
 #world_engine.create_resource_route('calories', farm_station, habitat)
 
+#world_engine.create_resource_route('co2', habitat, farm_station)
+
 num_of_days = 35
 for day in range(num_of_days):
     print(f"Day {day}:")
