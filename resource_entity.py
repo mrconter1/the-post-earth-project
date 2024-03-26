@@ -2,9 +2,13 @@ class ResourceEntity:
     def __init__(self, label, value=0):
         self.label = label
         self.value = value # Used when the entity itself is treated as a resource
+        self.entities = []
         self.requires = {}
         self.provides = {}
         self.available_resources = {} # Stockpile of ResourceEntity instances
+
+    def add_entity(self, entity):
+        self.entities.append(entity)
 
     def add_requirement(self, label, value):
         self.requires[label] = value
@@ -28,24 +32,16 @@ class ResourceEntity:
         else:
             print(f"Not enough of the resource {label} available to consume.")
 
-    def gather_requirements(self):
-        # Base case: if the instance represents a fundamental entity with a set quantity
-        if self.value > 0 or not self.requires:
-            return {self.label, self.value}
-        else:
-            # Recursive case: for composite entities, get the requirements of each
-            all_requirements = []
-            for required_entity in self.requires:
-                all_requirements.extend(required_entity.get_requirements())
-            return all_requirements
-
     def get_requirements(self):
-        all_requirements = self.gather_requirements()
-        consolidated = {}
-        # Consolidate requirements by summing quantities for each label
-        for requirement in all_requirements:
-            if requirement.label in consolidated:
-                consolidated[requirement.label].quantity += requirement.quantity
-            else:
-                consolidated[requirement.label] = ResourceEntity(requirement.label, requirement.quantity)
-        return list(consolidated.values())
+        if self.value > 0: # If this is a fundamental resource
+            return {self.label: self.value}
+        else: # If this is a composed resource, get requirements from all entities
+            total_requirements = self.requires.copy() # Start with own requirements
+            for entity in self.entities:
+                entity_requirements = entity.get_requirements()
+                for label, value in entity_requirements.items():
+                    if label in total_requirements:
+                        total_requirements[label] += value
+                    else:
+                        total_requirements[label] = value
+            return total_requirements

@@ -8,7 +8,7 @@ class HabitatStation(ResourceEntity):
 
         # This habitat hosts 700 people
         for i in range(700):
-            self.add_requirement("human", Human())
+            self.add_entity(Human())
 
         self.add_provision("space", self.calculate_station_volume())
 
