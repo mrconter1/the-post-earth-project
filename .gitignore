@@ -15,3 +15,7 @@ entities/__pycache__/human.cpython-310.pyc
 models/__pycache__/resource_entity.cpython-310.pyc
 models/__pycache__/world_engine.cpython-310.pyc
 stations/__pycache__/habitat_station.cpython-310.pyc
+entities/__pycache__/aeroponics_plant.cpython-310.pyc
+stations/__pycache__/farming_station.cpython-310.pyc
+stations/__pycache__/waste_facility_station.cpython-310.pyc
+stations/__pycache__/water_mining_station.cpython-310.pyc

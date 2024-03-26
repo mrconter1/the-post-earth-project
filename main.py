@@ -1,4 +1,8 @@
 from stations.habitat_station import HabitatStation
+from stations.farming_station import FarmingStation
+from stations.water_mining_station import WaterMiningStation
+from stations.waste_facility_station import WasteFacilityStation
+
 from models.world_engine import WorldEngine
 
 def generate_habitat_station_instance():
@@ -18,8 +22,14 @@ world_engine = WorldEngine()
 habitat = generate_habitat_station_instance()
 world_engine.add_entity(habitat)
 
-#farm_station = FarmStation()
-#world_engine.add_entity(farm_station)
+farming_station = FarmingStation()
+world_engine.add_entity(farming_station)
+
+water_mining_station = WaterMiningStation()
+world_engine.add_entity(water_mining_station)
+
+waste_facility_station = WasteFacilityStation()
+world_engine.add_entity(waste_facility_station)
 
 #world_engine.create_resource_route('oxygen', farm_station, habitat)
 #world_engine.create_resource_route('calories', farm_station, habitat)
