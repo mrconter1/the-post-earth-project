@@ -6,6 +6,6 @@ class WasteFacilityStation(ResourceEntity):
 
         self.consumes['organic_waste'] = 500
 
-        self.provides['nutrition'] = 500
+        self.provides['nutrients'] = 500
 
         self.add_capacity("volume", 500)
