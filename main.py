@@ -17,17 +17,17 @@ world_engine.add_entity(farming_station)
 world_engine.add_entity(water_mining_station)
 world_engine.add_entity(waste_facility_station)
 
-#world_engine.create_resource_route('oxygen', farming_station, habitat)
-#world_engine.create_resource_route('calories', farming_station, habitat)
+farming_station.create_resource_route('oxygen', habitat)
+farming_station.create_resource_route('calories', habitat)
 
-#world_engine.create_resource_route('co2', habitat, farming_station)
+habitat.create_resource_route('co2', farming_station)
 
-#world_engine.create_resource_route('organic_waste', habitat, waste_facility_station)
-#world_engine.create_resource_route('organic_waste', farming_station, waste_facility_station)
-#world_engine.create_resource_route('nutrients', waste_facility_station, farming_station)
+habitat.create_resource_route('organic_waste', waste_facility_station)
+farming_station.create_resource_route('organic_waste', waste_facility_station)
+waste_facility_station.create_resource_route('nutrients', farming_station)
 
-#world_engine.create_resource_route('water', water_mining_station, habitat)
-#world_engine.create_resource_route('water', water_mining_station, farming_station)
+water_mining_station.create_resource_route('water', habitat)
+water_mining_station.create_resource_route('water', farming_station)
 
 num_of_days = 35
 for day in range(num_of_days):
