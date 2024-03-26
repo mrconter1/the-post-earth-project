@@ -59,3 +59,18 @@ class ResourceEntity:
                     else:
                         total_provisions[label] = value
             return total_provisions
+
+    def list_stockpile(self):
+        # Improved method to list all resources in the stockpile with better formatting
+        print(f"Stockpile for {self.label}:")
+
+        if not self.available_resources:
+            print("  No resources in the stockpile.")
+            return
+
+        # Calculate the length of the longest label for alignment
+        longest_label_length = max(len(label) for label in self.available_resources.keys())
+
+        for label, value in sorted(self.available_resources.items()):
+            # Right-align the labels and format the value with proper units
+            print(f"  {label.rjust(longest_label_length)}: {value} units")
