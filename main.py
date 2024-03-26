@@ -22,7 +22,4 @@ def generate_habitat_station_instance():
 world_engine = WorldEngine()
 
 habitat = generate_habitat_station_instance()
-req_dict = habitat.get_requirements()
-print(req_dict)
-
 world_engine.add_entity(habitat)
