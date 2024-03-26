@@ -5,7 +5,7 @@ class FarmingStation(ResourceEntity):
     def __init__(self):
         super().__init__('FarmingStation')
 
-        number_of_plants = 500
+        number_of_plants = 250000
         for _ in range(number_of_plants):
             self.add_entity(AeroponicsPlant())
 
@@ -16,4 +16,5 @@ class FarmingStation(ResourceEntity):
         # Set recycle efficiences for each resource
         self.set_recycling_efficiency('water', 0.92)  # 92% recycling efficiency
 
-        self.add_capacity("volume", 500)
+        # Farming space station would be 50 x 50 x 50 meters
+        self.add_capacity("volume", 50 * 50 * 50)
