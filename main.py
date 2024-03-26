@@ -33,6 +33,9 @@ num_of_days = 35
 for day in range(num_of_days):
     print(f"Day {day}:")
     habitat.list_stockpile()
+    farming_station.list_stockpile()
+    water_mining_station.list_stockpile()
+    waste_facility_station.list_stockpile()
+    input()
     world_engine.tick()
     print("-" * 20)  # Separator for readability
-    input()

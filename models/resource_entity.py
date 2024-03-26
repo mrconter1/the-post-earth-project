@@ -148,5 +148,9 @@ class ResourceEntity:
             return
         longest_label_length = max(len(label) for label in self.available_resources.keys())
         for label, value in sorted(self.available_resources.items()):
-            value_as_int = int(value)
-            print(f"  {label.rjust(longest_label_length)}: {value_as_int} units")
+            # Check if value is less than 1 to decide on showing decimals
+            if value < 1:
+                formatted_value = f"{value}"
+            else:
+                formatted_value = f"{int(value)}"  # Convert to integer to remove decimals for values 1 or more
+            print(f"  {label.rjust(longest_label_length)}: {formatted_value} units")
