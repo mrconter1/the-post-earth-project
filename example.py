@@ -49,8 +49,8 @@ class FarmingModule(ResourceEntity):
         # Set recycle efficiences for resources
         self.set_recycling_efficiency('water', 0.92)  # 92% recycling efficiency
 
-        # Farming space station would be 50 x 50 x 50 meters
-        self.add_capacity("volume", 50 * 50 * 50)
+        # Farming space station would be 15 x 15 x 15 meters
+        self.add_capacity("volume", 15 * 15 * 15)
             
 class HumanHabitat(ResourceEntity):
     def __init__(self):
