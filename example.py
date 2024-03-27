@@ -76,12 +76,9 @@ def setup_world():
     # Add all configured entities to the world
     world_engine.add_entities(human_habitat, farming_module)
             
-    # Establish resource routes between habitats/modules as before
-    '''
-    world_engine.add_route(farming_module, human_habitat).with_resource('oxygen', 28)
-    world_engine.add_route(farming_module, human_habitat).with_resource('calories', 700)
-    world_engine.add_route(human_habitat, farming_module).with_resource('co2', 1)
-    '''
+    # Configure automatic transfers of generated resources
+    farming_module.send_resources_up_on_generation(human_habitat, 'oxygen', 'calories')
+    human_habitat.send_resources_up_on_generation(farming_module, 'oxygen')
 
     return world_engine
 
