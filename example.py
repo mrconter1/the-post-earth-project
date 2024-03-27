@@ -35,8 +35,8 @@ class FarmingModule(ResourceEntity):
     def __init__(self):
         super().__init__('FarmingModule')
 
-        # Populate the farming module with 50 plants
-        self.populate(Plant, 50)
+        # Populate the farming module with plants
+        self.populate(Plant, 2000)
 
         # Set max capacity for this module based on consumption and production
         days_for_capacity = 14
@@ -56,7 +56,7 @@ class HumanHabitat(ResourceEntity):
     def __init__(self):
         super().__init__('HumanHabitat')
 
-        # Populate the human habitat with 10 humans
+        # Populate the human habitat with humans
         self.populate(Human, 10)
 
         # Set max capacity for this module based on consumption and production
@@ -85,11 +85,9 @@ def setup_world():
     world_engine.add_entities(human_habitat, farming_module)
             
     # Configure automatic transfers of generated resources
-    '''
     farming_module.send_resource_up_on_generation(human_habitat, 'oxygen')
     farming_module.send_resource_up_on_generation(human_habitat, 'calories')
     human_habitat.send_resource_up_on_generation(farming_module, 'oxygen')
-    '''
 
     return world_engine
 
