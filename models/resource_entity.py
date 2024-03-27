@@ -46,6 +46,18 @@ class ResourceEntity:
         for resource, consumption_per_tick in total_consumption.items():
             self.add_to_stockpile(resource, consumption_per_tick * time_period_units)
 
+    def populate(self, entity_class, quantity):
+        """
+        Populates the entity with a specified number of instances of a given entity class.
+
+        Args:
+            entity_class: The class of the entity to be added.
+            quantity: The number of instances to add.
+        """
+        for _ in range(quantity):
+            new_entity = entity_class()
+            self.add_entity(new_entity)
+
     def add_entity(self, entity):
         self.entities.append(entity)
 

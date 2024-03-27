@@ -17,15 +17,6 @@ class Plant(ResourceEntity):
         self.provides['calories'] = 14          # Approx. 14 calories/day from various plant types.
         self.provides['water'] = 0.5            # Approx. 0.5 liters of water released through transpiration per day
 
-        # Start with an initial stock of seven days
-        days_to_stock = 7
-        self.stock_resources_for_time_period(days_to_stock)
-
-        # Set recycle efficiences for resources
-        self.set_recycling_efficiency('water', 0.92)  # 92% recycling efficiency
-
-        # Farming space station would be 50 x 50 x 50 meters
-        self.add_capacity("volume", 50 * 50 * 50)
 
 class Human(ResourceEntity):
     def __init__(self):
@@ -43,6 +34,31 @@ class Human(ResourceEntity):
         self.provides['co2'] = 1                # produces 1 kg of CO2
         self.provides['wastewater'] = 2.5       # produces 2.5 liters of wastewater
 
+class FarmingModule(ResourceEntity):
+    def __init__(self):
+        super().__init__('FarmingModule')
+
+        # Populate the farming module with 50 plants
+        self.populate(Plant, 50)
+
+        # Start with an initial stock of seven days
+        days_to_stock = 7
+        self.stock_resources_for_time_period(days_to_stock)
+
+        # Set recycle efficiences for resources
+        self.set_recycling_efficiency('water', 0.92)  # 92% recycling efficiency
+
+        # Farming space station would be 50 x 50 x 50 meters
+        self.add_capacity("volume", 50 * 50 * 50)
+        # Start with an initial stock of seven days
+            
+class HumanHabitat(ResourceEntity):
+    def __init__(self):
+        super().__init__('HumanHabitat')
+
+        # Populate the human habitat with 10 humans
+        self.populate(Human, 10)
+
         # Start with an initial stock of seven days
         days_to_stock = 7
         self.stock_resources_for_time_period(days_to_stock)
@@ -52,22 +68,6 @@ class Human(ResourceEntity):
 
         # Habitat space station would be 10 x 10 x 10 meters
         self.add_capacity("volume", 10 * 10 * 10 )
-
-class FarmingModule(ResourceEntity):
-    def __init__(self):
-        super().__init__('FarmingModule')
-
-        # This habitat hosts 10 people
-        for i in range(10):
-            self.add_entity(Plant())
-            
-class HumanHabitat(ResourceEntity):
-    def __init__(self):
-        super().__init__('HumanHabitat')
-
-        # This habitat hosts 10 people
-        for i in range(10):
-            self.add_entity(Human())
 
 world_engine = WorldEngine()
 
