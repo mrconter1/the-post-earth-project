@@ -17,7 +17,6 @@ class Plant(ResourceEntity):
         self.provides['calories'] = 14          # Approx. 14 calories/day from various plant types.
         self.provides['water'] = 0.5            # Approx. 0.5 liters of water released through transpiration per day
 
-
 class Human(ResourceEntity):
     def __init__(self):
         super().__init__('Human')
