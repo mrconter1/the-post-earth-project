@@ -77,9 +77,9 @@ def setup_world():
     world_engine.add_entities(human_habitat, farming_module)
             
     # Configure automatic transfers of generated resources
-    farming_module.send_resources_up_on_generation(human_habitat, 'oxygen')
-    farming_module.send_resources_up_on_generation(human_habitat, 'calories')
-    human_habitat.send_resources_up_on_generation(farming_module, 'oxygen')
+    farming_module.send_resource_up_on_generation(human_habitat, 'oxygen')
+    farming_module.send_resource_up_on_generation(human_habitat, 'calories')
+    human_habitat.send_resource_up_on_generation(farming_module, 'oxygen')
 
     return world_engine
 
