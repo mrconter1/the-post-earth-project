@@ -73,36 +73,42 @@ class HumanHabitat(ResourceEntity):
         # Habitat space station would be 10 x 10 x 10 meters
         self.add_capacity("volume", 10 * 10 * 10)
 
-def setup_world():
-    
-    world_engine = WorldEngine()
+# ---------------------------------------------------
+# World Simulation Setup
+# ---------------------------------------------------
 
-    # Initialize habitats/modules
-    human_habitat = HumanHabitat()
-    farming_module = FarmingModule()
+# Initialize the World Engine
+world_engine = WorldEngine()
 
-    # Add all configured entities to the world
-    world_engine.add_entities(human_habitat, farming_module)
-            
-    # Configure automatic transfers of generated resources
-    farming_module.send_resource_up_on_generation(human_habitat, 'oxygen')
-    farming_module.send_resource_up_on_generation(human_habitat, 'calories')
-    human_habitat.send_resource_up_on_generation(farming_module, 'oxygen')
+# Creating habitats and modules for the simulation environment
+# Initialize Human Habitat
+human_habitat = HumanHabitat()
 
-    return world_engine
+# Initialize Farming Module
+farming_module = FarmingModule()
 
-def run_simulation(num_days):
-    # Initialize the world engine and any setup required
-    world_engine = setup_world()
+# Add habitats and modules to the world engine
+world_engine.add_entities(human_habitat, farming_module)
 
-    # Run the simulation for the specified number of days
-    for day in range(1, num_days + 1):
-        print(f"Day {day}: Simulation running...")
-        world_engine.tick()                     # Advance the simulation by one day
-        world_engine.print_resources_table()    # Print formatted table of resources for each habitat/module
+# Configure resource transfers between entities
+# Farming module produces oxygen and calories for human habitat
+farming_module.send_resource_up_on_generation(human_habitat, 'oxygen')
+farming_module.send_resource_up_on_generation(human_habitat, 'calories')
 
-    print("Simulation completed.")
+# Human habitat produces carbon dioxide for farming module
+human_habitat.send_resource_up_on_generation(farming_module, 'carbon dioxide')
 
-if __name__ == "__main__":
-    NUMBER_OF_DAYS = 10  # Define how many days you want the simulation to run
-    run_simulation(NUMBER_OF_DAYS)
+# ---------------------------------------------------
+# Running the Simulation
+# ---------------------------------------------------
+
+# Define the duration of the simulation
+NUMBER_OF_DAYS = 10
+
+# Start the simulation, iterating over each day
+for day in range(1, NUMBER_OF_DAYS + 1):
+    print(f"Day {day}: Simulation running...")
+    world_engine.tick()  # Advance the simulation by one day
+    world_engine.print_resources_table()  # Print current resource status in each habitat/module
+
+print("Simulation completed.")
