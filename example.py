@@ -71,7 +71,7 @@ class HumanHabitat(ResourceEntity):
         self.set_recycling_efficiency('water', 0.92)  # 92% recycling efficiency
 
         # Habitat space station would be 10 x 10 x 10 meters
-        self.add_capacity("volume", 10 * 10 * 10 )
+        self.add_capacity("volume", 10 * 10 * 10)
 
 def setup_world():
     
