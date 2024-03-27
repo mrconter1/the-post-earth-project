@@ -38,6 +38,10 @@ class FarmingModule(ResourceEntity):
         # Populate the farming module with 50 plants
         self.populate(Plant, 50)
 
+        # Set max capacity for this module based on consumption and production
+        days_for_capacity = 14
+        self.set_stockpile_limits(days_for_capacity)
+
         # Start with an initial stock of seven days
         days_to_stock = 7
         self.stock_resources_for_time_period(days_to_stock)
@@ -54,6 +58,10 @@ class HumanHabitat(ResourceEntity):
 
         # Populate the human habitat with 10 humans
         self.populate(Human, 10)
+
+        # Set max capacity for this module based on consumption and production
+        days_for_capacity = 14
+        self.set_stockpile_limits(days_for_capacity)
 
         # Start with an initial stock of seven days
         days_to_stock = 7
