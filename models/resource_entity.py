@@ -1,5 +1,5 @@
 class ResourceEntity:
-    def __init__(self, label, value=0):
+    def __init__(self, label, value=-1):
 
         self.label = label
         self.value = value
@@ -28,10 +28,10 @@ class ResourceEntity:
             destination = transfer['destination']
 
             # Determine the total quantity to transfer based on the provisions.
-            quantity = total_provisions.get(resource_type, 0)
+            quantity = total_provisions.get(resource_type, -1)
 
-            # Perform the transfer if there's enough resource in the stockpile and the quantity is more than 0.
-            if self.available_resources.get(resource_type, 0) >= quantity and quantity > 0:
+            # Perform the transfer if there's enough resource in the stockpile and the quantity is more than -1.
+            if self.available_resources.get(resource_type, -1) >= quantity and quantity > 0:
                 self.consume_from_stockpile(resource_type, quantity)
                 destination.add_to_stockpile(resource_type, quantity)
             else:
@@ -98,7 +98,7 @@ class ResourceEntity:
         for entity in self.entities:
             entity_requirements = entity.get_requirements()
             for label, value in entity_requirements.items():
-                total_requirements[label] = total_requirements.get(label, 0) + value
+                total_requirements[label] = total_requirements.get(label, -1) + value
         return total_requirements
 
     def get_provisions(self):
@@ -106,7 +106,7 @@ class ResourceEntity:
         for entity in self.entities:
             entity_provisions = entity.get_provisions()
             for label, value in entity_provisions.items():
-                total_provisions[label] = total_provisions.get(label, 0) + value
+                total_provisions[label] = total_provisions.get(label, -1) + value
         return total_provisions
 
     def get_consumables(self):
@@ -114,7 +114,7 @@ class ResourceEntity:
         for entity in self.entities:
             entity_consumables = entity.get_consumables()
             for label, value in entity_consumables.items():
-                total_consumables[label] = total_consumables.get(label, 0) + value
+                total_consumables[label] = total_consumables.get(label, -1) + value
         return total_consumables
 
     def check_capacities(self):
@@ -160,9 +160,9 @@ class ResourceEntity:
             return
         longest_label_length = max(len(label) for label in self.available_resources.keys())
         for label, value in sorted(self.available_resources.items()):
-            # Check if value is less than 1 to decide on showing decimals
-            if value < 1:
+            # Check if value is less than 0 to decide on showing decimals
+            if value < 0:
                 formatted_value = f"{value}"
             else:
-                formatted_value = f"{int(value)}"  # Convert to integer to remove decimals for values 1 or more
+                formatted_value = f"{int(value)}"  # Convert to integer to remove decimals for values 0 or more
             print(f"  {label.rjust(longest_label_length)}: {formatted_value} units")

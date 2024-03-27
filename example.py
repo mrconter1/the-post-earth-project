@@ -77,9 +77,11 @@ def setup_world():
     world_engine.add_entities(human_habitat, farming_module)
             
     # Configure automatic transfers of generated resources
+    '''
     farming_module.send_resource_up_on_generation(human_habitat, 'oxygen')
     farming_module.send_resource_up_on_generation(human_habitat, 'calories')
     human_habitat.send_resource_up_on_generation(farming_module, 'oxygen')
+    '''
 
     return world_engine
 
@@ -90,6 +92,7 @@ def run_simulation(num_days):
     # Run the simulation for the specified number of days
     for day in range(1, num_days + 1):
         print(f"Day {day}: Simulation running...")
+        world_engine.print_resources_table()
         world_engine.tick()  # Advance the simulation by one day
 
     print("Simulation completed.")
