@@ -49,7 +49,6 @@ class FarmingModule(ResourceEntity):
 
         # Farming space station would be 50 x 50 x 50 meters
         self.add_capacity("volume", 50 * 50 * 50)
-        # Start with an initial stock of seven days
             
 class HumanHabitat(ResourceEntity):
     def __init__(self):
