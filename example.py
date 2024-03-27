@@ -97,5 +97,5 @@ def run_simulation(num_days):
     print("Simulation completed.")
 
 if __name__ == "__main__":
-    NUMBER_OF_DAYS = 30  # Define how many days you want the simulation to run
+    NUMBER_OF_DAYS = 10  # Define how many days you want the simulation to run
     run_simulation(NUMBER_OF_DAYS)
