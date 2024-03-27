@@ -92,8 +92,8 @@ def run_simulation(num_days):
     # Run the simulation for the specified number of days
     for day in range(1, num_days + 1):
         print(f"Day {day}: Simulation running...")
-        world_engine.print_resources_table()
-        world_engine.tick()  # Advance the simulation by one day
+        world_engine.print_resources_table()    # Print formatted table of resources for each habitat/module
+        world_engine.tick()                     # Advance the simulation by one day
 
     print("Simulation completed.")
 
