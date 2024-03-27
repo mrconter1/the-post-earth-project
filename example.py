@@ -40,7 +40,7 @@ class FarmingModule(ResourceEntity):
 
         # Set max capacity for this module based on consumption and production
         days_for_capacity = 14
-        self.set_stockpile_limits(days_for_capacity)
+        self.set_stock_capacity(days_for_capacity)
 
         # Start with an initial stock of seven days
         days_to_stock = 7
@@ -61,7 +61,7 @@ class HumanHabitat(ResourceEntity):
 
         # Set max capacity for this module based on consumption and production
         days_for_capacity = 14
-        self.set_stockpile_limits(days_for_capacity)
+        self.set_stock_capacity(days_for_capacity)
 
         # Start with an initial stock of seven days
         days_to_stock = 7
