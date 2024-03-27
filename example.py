@@ -15,7 +15,6 @@ class Plant(ResourceEntity):
         # Provisions (what a plant produces)
         self.provides['oxygen'] = 28            # Approx. 28 liters of oxygen per day
         self.provides['calories'] = 14          # Approx. 14 calories/day from various plant types.
-        self.provides['water'] = 0.5            # Approx. 0.5 liters of water released through transpiration per day
 
 class Human(ResourceEntity):
     def __init__(self):
@@ -31,7 +30,6 @@ class Human(ResourceEntity):
 
         # Provisions (what a human produces as waste)
         self.provides['co2'] = 1                # produces 1 kg of CO2
-        self.provides['wastewater'] = 2.5       # produces 2.5 liters of wastewater
 
 class FarmingModule(ResourceEntity):
     def __init__(self):
