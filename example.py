@@ -67,15 +67,37 @@ class HumanHabitat(ResourceEntity):
         # Habitat space station would be 10 x 10 x 10 meters
         self.add_capacity("volume", 10 * 10 * 10 )
 
-world_engine = WorldEngine()
+def setup_world():
+    
+    world_engine = WorldEngine()
 
-human_habitat = HumanHabitat()
-farming_module = FarmingModule()
+    # Initialize habitats/modules
+    human_habitat = HumanHabitat()
+    farming_module = FarmingModule()
 
-world_engine.add_entity(human_habitat)
-world_engine.add_entity(farming_module)
-        
-farming_module.create_resource_route('oxygen', human_habitat)
-farming_module.create_resource_route('calories', human_habitat)
+    # Add all configured entities to the world
+    world_engine.add_entities(human_habitat, farming_module)
+            
+    # Establish resource routes between habitats/modules as before
+    '''
+    world_engine.add_route(farming_module, human_habitat).with_resource('oxygen', 28)
+    world_engine.add_route(farming_module, human_habitat).with_resource('calories', 700)
+    world_engine.add_route(human_habitat, farming_module).with_resource('co2', 1)
+    '''
 
-human_habitat.create_resource_route('co2', farming_module)
+    return world_engine
+
+def run_simulation(num_days):
+    # Initialize the world engine and any setup required
+    world_engine = setup_world()
+
+    # Run the simulation for the specified number of days
+    for day in range(1, num_days + 1):
+        print(f"Day {day}: Simulation running...")
+        world_engine.tick()  # Advance the simulation by one day
+
+    print("Simulation completed.")
+
+if __name__ == "__main__":
+    NUMBER_OF_DAYS = 30  # Define how many days you want the simulation to run
+    run_simulation(NUMBER_OF_DAYS)
