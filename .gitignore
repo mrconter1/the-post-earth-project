@@ -19,3 +19,4 @@ entities/__pycache__/aeroponics_plant.cpython-310.pyc
 stations/__pycache__/farming_station.cpython-310.pyc
 stations/__pycache__/waste_facility_station.cpython-310.pyc
 stations/__pycache__/water_mining_station.cpython-310.pyc
+models/__pycache__/stockpile.cpython-310.pyc

@@ -1,35 +1,55 @@
 from models.resource_entity import ResourceEntity
 from models.world_engine import WorldEngine
 
+class Quantity:
+    def __init__(self, amount, unit):
+        self.amount = amount
+        self.unit = unit
+
+    def __repr__(self):
+        return f"{self.amount} {self.unit}"
+
 class Plant(ResourceEntity):
     def __init__(self):
         super().__init__('Plant')
 
         # Consumption (what a plant needs to grow)
-        self.consumes['water'] = 0.75           # Average 0.75 liters of water per day per plant
-        self.consumes['co2'] = 34               # Average of 34 liters of CO2 needed per day
+        self.consumes = {
+            'water': Quantity(0.75, 'L'),   # Average 0.75 liters of water per day per plant
+            'co2': Quantity(34, 'L'),       # Average of 34 liters of CO2 needed per day
+        }
 
         # Requirements (what a plant needs to have)
-        self.requires['volume'] = 0.5           # Average 0.5 cubic meters of space per plant
+        self.requires = {
+            'volume': Quantity(0.5, 'm^3'), # Average 0.5 cubic meters of space per plant
+        }
 
         # Provisions (what a plant produces)
-        self.provides['oxygen'] = 28            # Approx. 28 liters of oxygen per day
-        self.provides['calories'] = 14          # Approx. 14 calories/day from various plant types.
+        self.provides = {
+            'oxygen': Quantity(28, 'L'),    # Approx. 28 liters of oxygen per day
+            'food': Quantity(0.01, 'kg'),   # Each plant produces on average 10 grams of "food" per day
+        }
 
 class Human(ResourceEntity):
     def __init__(self):
         super().__init__('Human')
 
         # Consumption (what a human needs to consume)
-        self.consumes['oxygen'] = 550           # 550 liters of oxygen
-        self.consumes['water'] = 3.7            # 3.7 liters of water
-        self.consumes['calories'] = 2500        # 2500 kcal
+        self.consumes = {
+            'oxygen': Quantity(550, 'L'),                       # 550 liters of oxygen
+            'water': Quantity(3.7, 'L'),                        # 3.7 liters of water
+            'food': Quantity(10, 'kg'),                         # Each human needs on average 10 kg of "food" per day
+        }
 
         # Requirements (what a human needs to have)
-        self.requires['volume'] = 100           # 100 cubic meters of living space
+        self.requires = {
+            'volume': Quantity(100, 'm^3'),                     # 100 cubic meters of living space
+        }
 
         # Provisions (what a human produces as waste)
-        self.provides['co2'] = 1                # produces 1 kg of CO2
+        self.provides = {
+            'co2': Quantity(1, 'kg'),                           # Produces 1 kg of CO2
+        }
 
 class FarmingModule(ResourceEntity):
     def __init__(self):
@@ -38,19 +58,14 @@ class FarmingModule(ResourceEntity):
         # Populate the farming module with plants
         self.populate(Plant, 2000)
 
-        # Set max capacity for this module based on consumption and production
-        days_for_capacity = 14
-        self.set_stock_capacity(days_for_capacity)
+        self.define_max_volume(Quantity(15 * 15 * 15, 'm^3'))
+        self.define_max_mass(Quantity(100, 'ton'))
 
         # Start with an initial stock of seven days
-        days_to_stock = 7
-        self.stock_resources_for_time_period(days_to_stock)
+        self.stock_for_N_time_steps(7)
 
         # Set recycle efficiences for resources
         self.set_recycling_efficiency('water', 0.92)  # 92% recycling efficiency
-
-        # Farming space station would be 15 x 15 x 15 meters
-        self.add_capacity("volume", 15 * 15 * 15)
             
 class HumanHabitat(ResourceEntity):
     def __init__(self):
@@ -59,19 +74,14 @@ class HumanHabitat(ResourceEntity):
         # Populate the human habitat with humans
         self.populate(Human, 10)
 
-        # Set max capacity for this module based on consumption and production
-        days_for_capacity = 14
-        self.set_stock_capacity(days_for_capacity)
+        self.define_max_volume(Quantity(10 * 10 * 10, 'm^3'))
+        self.define_max_mass(Quantity(200, 'ton'))
 
         # Start with an initial stock of seven days
-        days_to_stock = 7
-        self.stock_resources_for_time_period(days_to_stock)
+        self.stock_for_N_time_steps(7)
 
         # Set recycle efficiences for resources
         self.set_recycling_efficiency('water', 0.92)  # 92% recycling efficiency
-
-        # Habitat space station would be 10 x 10 x 10 meters
-        self.add_capacity("volume", 10 * 10 * 10)
 
 # ---------------------------------------------------
 # World Simulation Setup
