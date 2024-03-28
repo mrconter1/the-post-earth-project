@@ -15,21 +15,21 @@ class Plant(ResourceEntity):
 
         # Consumption (what a plant needs to grow per day)
         self.consumes = {
-            'water': Quantity(0.75, 'L'),               # Average 0.75 liters of water per day per plant
-            'co2': Quantity(34, 'L'),                   # Average of 34 liters of CO2 needed per day
+            'water': Quantity(0.75, 'L'),                       # Average 0.75 liters of water per day per plant
+            'co2': Quantity(34, 'L'),                           # Average of 34 liters of CO2 needed per day
         }
 
         # Requirements (what a plant needs to have)
         self.requires = {
-            'volume': Quantity(0.5, 'm^3'),             # Average 0.5 cubic meters of space per plant
+            'volume': Quantity(0.5, 'm^3'),                     # Average 0.5 cubic meters of space per plant
         }
 
         # Provisions (what a plant produces per day)
         self.provides = {
-            'protein': Quantity(0.01, 'g'),             # Average 0.01 g of proteins per day
-            'carbohydrates': Quantity(0.04, 'g'),       # Average 0.04 g of carbohydrates per day
-            'fats': Quantity(0.002, 'g'),               # Average 0.002 g of fats per day
-            'oxygen': Quantity(28, 'L'),                # Approx. 28 liters of oxygen per day
+            'protein': Quantity(0.01, 'g'),                     # Average 0.01 g of proteins per day
+            'carbohydrates': Quantity(0.04, 'g'),               # Average 0.04 g of carbohydrates per day
+            'fats': Quantity(0.002, 'g'),                       # Average 0.002 g of fats per day
+            'oxygen': Quantity(28, 'L'),                        # Approx. 28 liters of oxygen per day
         }
 
 class Human(ResourceEntity):
@@ -69,7 +69,7 @@ class FarmingModule(ResourceEntity):
         self.stock_for_N_time_steps(7)
 
         # Set recycle efficiences for resources
-        self.set_recycling_efficiency('water', 0.92)  # 92% recycling efficiency
+        self.set_recycling_efficiency('water', 0.92)            # 92% recycling efficiency
             
 class HumanHabitat(ResourceEntity):
     def __init__(self):
@@ -85,7 +85,7 @@ class HumanHabitat(ResourceEntity):
         self.stock_for_N_time_steps(7)
 
         # Set recycle efficiences for resources
-        self.set_recycling_efficiency('water', 0.92)  # 92% recycling efficiency
+        self.set_recycling_efficiency('water', 0.92)            # 92% recycling efficiency
 
 # ---------------------------------------------------
 # World Simulation Setup
