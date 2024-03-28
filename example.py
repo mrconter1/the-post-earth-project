@@ -13,21 +13,23 @@ class Plant(ResourceEntity):
     def __init__(self):
         super().__init__('Plant')
 
-        # Consumption (what a plant needs to grow)
+        # Consumption (what a plant needs to grow per day)
         self.consumes = {
-            'water': Quantity(0.75, 'L'),   # Average 0.75 liters of water per day per plant
-            'co2': Quantity(34, 'L'),       # Average of 34 liters of CO2 needed per day
+            'water': Quantity(0.75, 'L'),               # Average 0.75 liters of water per day per plant
+            'co2': Quantity(34, 'L'),                   # Average of 34 liters of CO2 needed per day
         }
 
         # Requirements (what a plant needs to have)
         self.requires = {
-            'volume': Quantity(0.5, 'm^3'), # Average 0.5 cubic meters of space per plant
+            'volume': Quantity(0.5, 'm^3'),             # Average 0.5 cubic meters of space per plant
         }
 
-        # Provisions (what a plant produces)
+        # Provisions (what a plant produces per day)
         self.provides = {
-            'oxygen': Quantity(28, 'L'),    # Approx. 28 liters of oxygen per day
-            'food': Quantity(0.01, 'kg'),   # Each plant produces on average 10 grams of "food" per day
+            'protein': Quantity(0.01, 'g'),             # Average 0.01 g of proteins per day
+            'carbohydrates': Quantity(0.04, 'g'),       # Average 0.04 g of carbohydrates per day
+            'fats': Quantity(0.002, 'g'),               # Average 0.002 g of fats per day
+            'oxygen': Quantity(28, 'L'),                # Approx. 28 liters of oxygen per day
         }
 
 class Human(ResourceEntity):
@@ -36,9 +38,11 @@ class Human(ResourceEntity):
 
         # Consumption (what a human needs to consume)
         self.consumes = {
-            'oxygen': Quantity(550, 'L'),                       # 550 liters of oxygen
+            'protein': Quantity(0.8, 'kg'),                     # 0.8 kg of proteins
+            'carbohydrates': Quantity(1.3, 'kg'),               # 1.3 kg of carbohydrates
+            'fats': Quantity(0.7, 'kg'),                        # 0.7 kg of fats
             'water': Quantity(3.7, 'L'),                        # 3.7 liters of water
-            'food': Quantity(10, 'kg'),                         # Each human needs on average 10 kg of "food" per day
+            'oxygen': Quantity(550, 'L'),                       # 550 liters of oxygen
         }
 
         # Requirements (what a human needs to have)
@@ -106,7 +110,7 @@ farming_module.send_resource_up_on_generation(human_habitat, 'oxygen')
 farming_module.send_resource_up_on_generation(human_habitat, 'calories')
 
 # Human habitat produces carbon dioxide for farming module
-human_habitat.send_resource_up_on_generation(farming_module, 'carbon dioxide')
+human_habitat.send_resource_up_on_generation(farming_module, 'co2')
 
 # ---------------------------------------------------
 # Running the Simulation
